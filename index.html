@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Time I Spent with Hanonty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to right, #ff9a9e, #fecfef);
+            font-family: 'Roboto', sans-serif;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.4);
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #ffebcd;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .time {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2em;
+            background: linear-gradient(to right, #ff6ec4, #7873f5);
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .heart {
+            position: absolute;
+            width: 80px;
+            height: 70px;
+            background-color: #ff6ec4;
+            transform: rotate(-45deg);
+            animation: float 4s infinite ease-in-out;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 70px;
+            background-color: #ff6ec4;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -40px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 40px;
+            top: 0;
+        }
+
+        .heart:nth-child(2) {
+            top: 10%;
+            left: 5%;
+            transform: translateY(20px);
+            animation-duration: 2s;
+        }
+
+        .heart:nth-child(3) {
+            top: 10%;
+            right: 5%;
+            transform: translateY(20px);
+            animation-duration: 2s;
+        }
+
+        .heart:nth-child(4) {
+            bottom: 10%;
+            left: 5%;
+            animation-duration: 2s;
+        }
+
+        .heart:nth-child(5) {
+            bottom: 10%;
+            right: 5%;
+            animation-duration: 2s;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(-45deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(-45deg);
+            }
+            100% {
+                transform: translateY(0) rotate(-45deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Time I Spent with Hanonty</h1>
+        <div class="time" id="time"></div>
+    </div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <div class="heart"></div>
+    <script>
+        function updateTime() {
+            const startDate = new Date('July 16, 2023 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = now - startDate;
+
+            const years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const weeks = Math.floor((distance % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24 * 7));
+            const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 7)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('time').innerHTML = `
+                ${years} Years, ${months} Months, ${weeks} Weeks, ${days} Days, ${hours} Hours, ${minutes} Minutes, ${seconds} Seconds
+            `;
+        }
+
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
